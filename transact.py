@@ -57,12 +57,10 @@ def find_zero_sum_subsets_dict(dictionary):
 
 def transact(payment_dict, transactions):
     while(payment_dict):
-        first_key = next(iter(payment_dict))  # Get the first key
-        first_value = payment_dict[first_key]  # Get the value corresponding to the first key
-
-        # Access the last element
-        last_key = list(payment_dict.keys())[-1]  # Get the last key
-        last_value = payment_dict[last_key]  # Get the value corresponding to the last key
+        first_key = next(iter(payment_dict))  
+        first_value = payment_dict[first_key]  
+        last_key = list(payment_dict.keys())[-1] 
+        last_value = payment_dict[last_key]  
         
         if(first_value * -1 == last_value):
             transactions.append((first_key, last_key, last_value))
@@ -71,7 +69,7 @@ def transact(payment_dict, transactions):
         elif(first_value * -1 > last_value):
             transactions.append((first_key, last_key, last_value))
             payment_dict[first_key] += last_value
-            payment_dict.pop(last_key)  # Remove the last key
+            payment_dict.pop(last_key)  
             payment_dict = dict(sorted(payment_dict.items(), key=lambda item: item[1]))
         else:
             transactions.append((first_key, last_key, -1*first_value))
